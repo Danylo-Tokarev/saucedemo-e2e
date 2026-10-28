@@ -15,25 +15,25 @@ const invalidLogins: LoginCase[] = [
   {
     desc: 'empty username',
     username: '',
-    password: PASS,   // валидный пароль из env — изолируем проверку username
+    password: PASS,
     error: 'Epic sadface: Username is required',
   },
   {
     desc: 'empty password',
-    username: USER,        // валидный юзер из env
-    password: '',                            // ПУСТО — это и есть кейс, литералом
+    username: USER, 
+    password: '', 
     error: 'Epic sadface: Password is required',
   },
   {
     desc: 'wrong username and password',
-    username: 'no_such_user',                // намеренно неверные = тест-данные, литералом
+    username: 'no_such_user',
     password: 'wrong_pass',
     error: 'Epic sadface: Username and password do not match any user in this service',
   },
   {
     desc: 'locked out user',
-    username: 'locked_out_user',             // конкретная заблокированная личность, литералом
-    password: PASS,    // пароль ВЕРНЫЙ → из env
+    username: 'locked_out_user',
+    password: PASS,    //
     error: 'Epic sadface: Sorry, this user has been locked out.',
   },
 ];
