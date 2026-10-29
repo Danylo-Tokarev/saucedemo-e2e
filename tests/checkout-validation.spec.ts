@@ -1,4 +1,4 @@
-import { test } from "@playwright/test";
+import { test, expect } from "@playwright/test";
 import { LoginPage } from "../Pages/LoginPage";
 import { CartPage } from "../Pages/CartPage";
 import { InventoryPage } from "../Pages/InventoryPage";
@@ -15,21 +15,21 @@ const checkoutCases: CheckoutCase[] = [
   {
     desc: "empty first name",
     firstName: "",
-    lastName: "user",
+    lastName: "Tokarev",
     postalCode: "12345",
     error: "Error: First Name is required",
   },
   {
     desc: "empty last name",
-    firstName: "standard_user",
+    firstName: "Danylo",
     lastName: "",
     postalCode: "12345",
     error: "Error: Last Name is required",
   },
   {
     desc: "empty postal code",
-    firstName: "standard_user",
-    lastName: "secret_sauce",
+    firstName: "Danylo",
+    lastName: "Tokarev",
     postalCode: "",
     error: "Error: Postal Code is required",
   },
