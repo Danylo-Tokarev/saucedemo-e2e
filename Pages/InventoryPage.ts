@@ -1,5 +1,4 @@
 import { Page, Locator, expect } from "@playwright/test";
-import { get } from "node:http";
 
 export class InventoryPage {
   private readonly page: Page;
@@ -16,6 +15,10 @@ export class InventoryPage {
     this.sortDropdown = page.locator('[data-test="product-sort-container"]');
     this.productNames = page.locator('[data-test="inventory-item-name"]');
     this.productPrices = page.locator('[data-test="inventory-item-price"]');
+  }
+
+  async goto(): Promise<void> {
+    await this.page.goto("/inventory.html");
   }
 
   async addItem(productId: string): Promise<void> {
@@ -37,6 +40,7 @@ export class InventoryPage {
   async getProductNames(): Promise<string[]> {
     return this.productNames.allTextContents();
   }
+
   async getProductPrices(): Promise<number[]> {
     const texts = await this.productPrices.allTextContents();
     return texts.map((t) => parseFloat(t.replace("$", "")));
