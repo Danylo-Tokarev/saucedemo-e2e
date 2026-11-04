@@ -1,5 +1,4 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../Pages/LoginPage";
+import { test } from "@playwright/test";
 import { CartPage } from "../Pages/CartPage";
 import { InventoryPage } from "../Pages/InventoryPage";
 import { CheckoutPage } from "../Pages/CheckoutPage";
@@ -37,12 +36,10 @@ const checkoutCases: CheckoutCase[] = [
 
 test.describe("Checkout validation", () => {
   test.beforeEach(async ({ page }) => {
-    const loginPage = new LoginPage(page);
     const inventoryPage = new InventoryPage(page);
     const cartPage = new CartPage(page);
 
-    await loginPage.goto();
-    await loginPage.login(process.env.USER_NAME!, process.env.USER_PASSWORD!);
+    await inventoryPage.goto();
     await inventoryPage.addItem("sauce-labs-backpack");
     await inventoryPage.goToCart();
     await cartPage.checkout();
